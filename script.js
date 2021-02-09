@@ -1,12 +1,12 @@
 const searchSongs = () => {
     const searchText = document.getElementById("search-item").value;
     // console.log(searchText);
-    const urlOfSongs = `https://api.lyrics.ovh/suggest/${searchText}`
+    const urlOfSongs = `h://api.lyrics.ovh/suggest/${searchText}`
     // console.log(urlOfSongs);
         fetch(urlOfSongs)
             .then(res => res.json())
-            .then(importSongs => displaySongs(importSongs.data));
-            // .catch(error = console.log(error));
+            .then(importSongs => displaySongs(importSongs.data))
+            .catch(error => console.log(error));
 }
 
 
