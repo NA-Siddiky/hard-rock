@@ -1,7 +1,7 @@
 const searchSongs = () => {
     const searchText = document.getElementById("search-item").value;
     // console.log(searchText);
-    const urlOfSongs = `h://api.lyrics.ovh/suggest/${searchText}`
+    const urlOfSongs = `https://api.lyrics.ovh/suggest/${searchText}`
     // console.log(urlOfSongs);
         fetch(urlOfSongs)
             .then(res => res.json())
@@ -10,17 +10,17 @@ const searchSongs = () => {
 }
 
 
-const searchSongs = async () => {
-    const searchText = document.getElementById("search-item").value;
-    console.log(searchText);
-    const urlOfSongs = `https://api.lyrics.ovh/suggest/${searchText}`
-    const response = await fetch(urlOfSongs);
-    const importSongs = await response.json();
-    displaySongs(importSongs.data);
-}
+// const searchSongs = async () => {
+//     const searchText = document.getElementById("search-item").value;
+//     console.log(searchText);
+//     const urlOfSongs = `https://api.lyrics.ovh/suggest/${searchText}`
+//     const response = await fetch(urlOfSongs);
+//     const importSongs = await response.json();
+//     displaySongs(importSongs.data);
+// }
 
 
-const displaySongs = (songs) => {
+const displaySongs = songs => {
     // console.log(songs);
     const songContainer = document.getElementById('song-container');
     songContainer.innerHTML = "";
