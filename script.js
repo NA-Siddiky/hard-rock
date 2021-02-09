@@ -1,15 +1,3 @@
-const searchSongs = () => {
-    const searchText = document.getElementById("search-item").value;
-    // console.log(searchText);
-    const urlOfSongs = `https://api.lyrics.ovh/suggest/${searchText}`
-    // console.log(urlOfSongs);
-        fetch(urlOfSongs)
-            .then(res => res.json())
-            .then(importSongs => displaySongs(importSongs.data))
-            .catch(error => console.log(error));
-}
-
-
 // const searchSongs = async () => {
 //     const searchText = document.getElementById("search-item").value;
 //     console.log(searchText);
@@ -19,6 +7,17 @@ const searchSongs = () => {
 //     displaySongs(importSongs.data);
 // }
 
+const searchSongs = () => {
+    const searchText = document.getElementById("search-item").value;
+    // console.log(searchText);
+    const urlOfSongs = `https://api.lyrics.ovh/suggest/${searchText}`
+    // console.log(urlOfSongs);
+    fetch(urlOfSongs)
+        .then(res => res.json())
+        .then(importSongs => displaySongs(importSongs.data))
+        // .catch(error => console.log(error))
+        .catch(error => displayError(error));
+}
 
 const displaySongs = songs => {
     // console.log(songs);
@@ -54,12 +53,34 @@ const getLyric = async (artist, title) => {
     //     .then(res => res.json())
     //     .then(importLyric => displayLyric(importLyric.lyrics))
 
-    const response = await fetch(urlOfLyric);
-    const importLyric = await response.json();
-    displayLyric(importLyric.lyrics);
+    try {
+        const response = await fetch(urlOfLyric);
+        const importLyric = await response.json();
+        displayLyric(importLyric.lyrics);
+
+    } catch (error) {
+        // displayError('sorry! nothing found try again later');
+        console.log(error);
+        displayError(error);
+        // if (error.length === 5) {
+        //     console.log(error);
+        // }
+        // else {
+        //     displayError('sorry! nothing found try again later')
+        // }
+    }
+
+    // const response = await fetch(urlOfLyric);
+    // const importLyric = await response.json();
+    // displayLyric(importLyric.lyrics);
 }
 
 const displayLyric = lyrics => {
     const lyricsDiv = document.getElementById('song-lyric')
     lyricsDiv.innerHTML = lyrics;
+}
+
+const displayError = error => {
+    const errorIs = document.getElementById("error-message")
+    errorIs.innerText = error;
 }
