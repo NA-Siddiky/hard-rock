@@ -41,12 +41,12 @@ const displaySongs = songs => {
         const songDiv = document.createElement('div');
         songDiv.className = "single-result row align-items-center my-3 p-3";
         songDiv.innerHTML = `
-        <div class="col-md-9">
+        <div class="col-md-6">
             <h3 class="lyrics-name">${song.title}</h3>
             <p class="author lead">Album by <span>${song.artist.name}</span></p>
             <button onclick = "getLyric('${song.artist.name}', '${song.title}')" class="btn btn-success">Get Lyrics</button>
         </div>
-        <div class="col-md-3 text-center">
+        <div class="col-md-6 text-justify">
             <img src="${song.album.cover}" class="rounded mx-auto d-block"></img>
             <audio controls>
                 <source src="${song.preview}" type="audio/mpeg">
